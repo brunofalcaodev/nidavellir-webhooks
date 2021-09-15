@@ -28,7 +28,7 @@ class WebhookController extends Controller
          */
         $headers = $request->header();
 
-        return $request->dump();
+        return $request->all();
     }
 
     public function test(Request $request)
@@ -58,6 +58,6 @@ market_order:1";
 
         info('5');
 
-        info('result: ' . $result);
+        return $result;
     }
 }
