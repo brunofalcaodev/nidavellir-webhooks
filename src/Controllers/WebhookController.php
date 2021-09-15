@@ -23,10 +23,12 @@ class WebhookController extends Controller
          * 2. Make the necessary data validations.
          * 3. Execute order (buy, sell).
          * 4. Obtain all the information regarded to the token/exchange.
+         *
+         * All should run under a job batch.
          */
         $headers = $request->header();
-        info('webhook called');
-        return 'okay';
+
+        dd($request);
     }
 
     public function test(Request $request)
