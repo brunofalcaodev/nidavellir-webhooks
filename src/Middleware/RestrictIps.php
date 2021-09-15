@@ -16,25 +16,21 @@ class RestrictIps
      */
     public function handle(Request $request, Closure $next)
     {
-        info('middleware triggered');
-
         /**
          * https://www.tradingview.com/support/solutions/43000529348-about-webhooks/.
          */
-        if (app()->environment() == 'production') {
-            $ips = [
+
+        $ips = [
             '127.0.0.1',
             '52.89.214.238',
             '34.212.75.30',
             '54.218.53.128',
-            '52.32.178.7', ];
+            '52.32.178.7',
+        ];
 
-            if (in_array($request->ip(), $ips)) {
-                return $next($request);
-            }
-        } else {
+        if (in_array($request->ip(), $ips)) {
             return $next($request);
-        };
+        }
 
         throw new \Exception('Your ip address cannot access Nidavellir webhooks');
     }
