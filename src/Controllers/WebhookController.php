@@ -27,6 +27,7 @@ class WebhookController extends Controller
          *
          * All should run under a job batch.
          */
+        info('webhook triggered');
 
         Alert::create([
             'headers' => $request->header(),
