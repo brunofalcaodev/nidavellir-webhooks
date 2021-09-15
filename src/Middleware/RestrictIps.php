@@ -16,6 +16,8 @@ class RestrictIps
      */
     public function handle(Request $request, Closure $next)
     {
+        info('middleware triggered');
+
         /**
          * https://www.tradingview.com/support/solutions/43000529348-about-webhooks/.
          */
