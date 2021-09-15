@@ -28,7 +28,7 @@ class WebhookController extends Controller
          */
         $headers = $request->header();
 
-        dd($request);
+        return $request->dump();
     }
 
     public function test(Request $request)
