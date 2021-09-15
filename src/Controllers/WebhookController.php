@@ -27,7 +27,7 @@ class WebhookController extends Controller
          * All should run under a job batch.
          */
         $headers = $request->header();
-
+        dd($request);
         return $request->dump();
     }
 
