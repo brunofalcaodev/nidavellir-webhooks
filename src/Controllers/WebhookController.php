@@ -4,6 +4,7 @@ namespace Nidavellir\Webhooks\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Nidavellir\Cube\Models\Alert;
 
 class WebhookController extends Controller
 {
@@ -26,9 +27,11 @@ class WebhookController extends Controller
          *
          * All should run under a job batch.
          */
-        $headers = $request->header();
-        dd($request);
-        return $request->dump();
+
+        Alert::create([
+            'headers' => $request->header(),
+            'body' => $request->post()
+        ]);
     }
 
     public function test(Request $request)
