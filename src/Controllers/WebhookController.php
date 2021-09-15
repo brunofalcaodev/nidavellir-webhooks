@@ -28,7 +28,7 @@ class WebhookController extends Controller
          * All should run under a job batch.
          */
         info(json_encode($request->header()));
-        info(json_encode($request->post()));
+        info(json_encode($request->getContent()));
 
         /*
         Alert::create([
