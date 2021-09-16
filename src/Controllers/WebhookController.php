@@ -27,9 +27,16 @@ class WebhookController extends Controller
          *
          * All should run under a job batch.
          */
+
+        $collection = collect(preg_split("/\r\n|\n|\r/", $request->getContent()))->map(function ($item, $key) {
+            $values = explode(':', str_replace(' ', '', $item));
+
+            return [$values[0] => $values[1]];
+        });
+
         Alert::create([
             'headers' => $request->header(),
-            'body' => preg_split("/\r\n|\n|\r/", $request->getContent()),
+            'body' => $collection->collapse(),
         ]);
     }
 
