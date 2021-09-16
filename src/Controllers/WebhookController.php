@@ -28,7 +28,7 @@ class WebhookController extends Controller
          * All should run under a job batch.
          */
         Alert::create([
-            'headers' => json_encode($request->header()),
+            'headers' => array_merge($request->header(), ['a' => 'b']),
             'body' => json_encode(preg_split("/\r\n|\n|\r/", $request->getContent())),
         ]);
     }
