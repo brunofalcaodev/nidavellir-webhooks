@@ -19,7 +19,6 @@ class RestrictIps
         /**
          * https://www.tradingview.com/support/solutions/43000529348-about-webhooks/.
          */
-
         $ips = [
             '127.0.0.1',
             '52.89.214.238',

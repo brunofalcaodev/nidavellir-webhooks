@@ -29,26 +29,26 @@ class WebhookController extends Controller
          */
         Alert::create([
             'headers' => json_encode($request->header()),
-            'body' => json_encode(preg_split("/\r\n|\n|\r/", $request->getContent()))
+            'body' => json_encode(preg_split("/\r\n|\n|\r/", $request->getContent())),
         ]);
     }
 
     public function test(Request $request)
     {
-
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, "https://www.nidavellir.trade/webhook");
+        curl_setopt($ch, CURLOPT_URL, 'https://www.nidavellir.trade/webhook');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: text/plain'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: text/plain']);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "hopper_id:1005220
+        curl_setopt($ch, CURLOPT_POSTFIELDS, 'hopper_id:1005220
 coin:NANO
 action:buy
-market_order:1");
+market_order:1');
 
-        $result=curl_exec($ch);
+        $result = curl_exec($ch);
         curl_close($ch);
+
         return $result;
     }
 }
