@@ -29,7 +29,7 @@ class WebhookController extends Controller
          */
         Alert::create([
             'headers' => array_merge($request->header(), ['a' => 'b']),
-            'body' => json_encode(preg_split("/\r\n|\n|\r/", $request->getContent())),
+            'body' => preg_split("/\r\n|\n|\r/", $request->getContent()),
         ]);
     }
 
