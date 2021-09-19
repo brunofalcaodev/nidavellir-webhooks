@@ -5,6 +5,7 @@ namespace Nidavellir\Webhooks\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Nidavellir\Cube\Models\Alert;
+use Nidavellir\Workflows\Jobs\ProcessAlert;
 
 class WebhookController extends Controller
 {
@@ -19,15 +20,10 @@ class WebhookController extends Controller
      */
     public function received(Request $request)
     {
-        /**
-         * 1. Register the call, no matter if it's well registered or not.
-         * 2. Make the necessary data validations.
-         * 3. Execute order (buy, sell).
-         * 4. Obtain all the information regarded to the token/exchange.
-         *
-         * All should run under a job batch.
-         */
+        // Trigger ProcessAlert job.
+        ProcessAlert::dispatch($request->header(), $request->getContent());
 
+        /*
         $collection = collect(preg_split("/\r\n|\n|\r/", $request->getContent()))->map(function ($item, $key) {
             $values = explode(':', str_replace(' ', '', $item));
 
@@ -38,24 +34,6 @@ class WebhookController extends Controller
             'headers' => $request->header(),
             'body' => $collection->collapse(),
         ]);
-    }
-
-    public function test(Request $request)
-    {
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, 'https://www.nidavellir.trade/webhook');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: text/plain']);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, 'hopper_id:1005220
-coin:NANO
-action:buy
-market_order:1');
-
-        $result = curl_exec($ch);
-        curl_close($ch);
-
-        return $result;
+        */
     }
 }
