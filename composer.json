@@ -17,11 +17,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "illuminate/support": "^8.0",
-        "brunofalcaodev/nidavellir-cube": "dev-master",
-        "brunofalcaodev/nidavellir-abstracts": "dev-master",
-        "brunofalcaodev/nidavellir-apis": "dev-master",
-        "brunofalcaodev/nidavellir-jobs": "dev-master",
-        "brunofalcaodev/nidavellir-installer": "dev-master"
+        "brunofalcaodev/nidavellir-trading": "dev-master"
     },
     "autoload": {
         "psr-4": {
