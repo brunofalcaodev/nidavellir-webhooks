@@ -5,7 +5,7 @@ namespace Nidavellir\Webhooks\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Nidavellir\Cube\Models\Alert;
-use Nidavellir\Workflows\Jobs\ProcessAlert;
+use Nidavellir\Jobs\Jobs\Alerts\ProcessAlert;
 
 class WebhookController extends Controller
 {
