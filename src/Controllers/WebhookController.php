@@ -21,7 +21,7 @@ class WebhookController extends Controller
     public function received(Request $request)
     {
         // Trigger ProcessAlert job.
-        ProcessAlert::dispatch($request->header(), $request->getContent());
+        ProcessAlert::dispatch($request);
 
         /*
         $collection = collect(preg_split("/\r\n|\n|\r/", $request->getContent()))->map(function ($item, $key) {
