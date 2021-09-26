@@ -5,6 +5,7 @@ namespace Nidavellir\Webhooks;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Nidavellir\Webhooks\Middleware\RestrictIps;
+use Nidavellir\Webhooks\Middleware\SaveOnSystemLog;
 
 class NidavellirWebhooksServiceProvider extends ServiceProvider
 {
@@ -16,7 +17,7 @@ class NidavellirWebhooksServiceProvider extends ServiceProvider
 
     protected function loadRoutes()
     {
-        Route::middleware(['api', RestrictIps::class])
+        Route::middleware(['api', RestrictIps::class, SaveOnSystemLog::class])
              ->group(function () {
                  include __DIR__.'/../routes/web.php';
              });
